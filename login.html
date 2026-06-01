@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly — Login</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='url(%23g)'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2300e5ff'/><stop offset='1' stop-color='%237b5cff'/></linearGradient></defs><text y='.9em' font-size='70' font-family='Arial Black' font-weight='900' fill='%23000' x='14'>S</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./Website.css">
+</head>
+<body>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- LOGIN PAGE -->
+  <div id="page-login" class="page active">
+    <div class="login-page">
+
+      <!-- Left branding panel -->
+      <div class="login-left">
+        <img class="login-bg-img" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80" alt="" loading="lazy">
+        <div class="shape s1" style="position:absolute;z-index:1"></div>
+        <div class="login-left-content">
+          <div class="logo" role="button" tabindex="0" aria-label="Go to home">
+            <div class="logo-icon">
+              <a href="./index.html"><img src="./Screenshot_2026-05-27_120008-removebg-preview.png" alt="Stackly"></a>
+            </div>
+            <span class="logo-text"><a href="./index.html"><h1>Stackly</h1></a></span>
+          </div>
+          <h2 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin-bottom:14px;line-height:1.2">Your Technology<br><span class="gradient-text">Command Centre</span></h2>
+          <p style="color:var(--text2);line-height:1.8;margin-bottom:36px;font-size:.97rem">Access dashboards, manage projects, review tickets and collaborate with your Stackly team — all in one secure place.</p>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:13px 16px"><span style="font-size:19px">🔒</span><div><div style="font-size:13px;font-weight:600;margin-bottom:1px">Bank-grade Security</div><div style="font-size:12px;color:var(--text2)">AES-256 encryption, 2FA enforced</div></div></div>
+            <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:13px 16px"><span style="font-size:19px">📊</span><div><div style="font-size:13px;font-weight:600;margin-bottom:1px">Real-Time Dashboards</div><div style="font-size:12px;color:var(--text2)">Live service health and project status</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form panel -->
+      <div class="login-right">
+        <div class="login-box">
+          <br>
+          <button class="back-btn" style="margin-bottom:28px">
+            <a href="./index.html">← Back to Home</a>
+          </button>
+          <div class="login-header">
+            <h2 id="loginTitle">Welcome back</h2>
+            <p id="loginSubtitle">Sign in to your Stackly account</p>
+          </div>
+
+          <div class="login-tabs">
+            <button class="login-tab active" id="tab-user" onclick="switchLoginTab('user')">👤 User</button>
+            <button class="login-tab" id="tab-admin" onclick="switchLoginTab('admin')">🛡️ Admin</button>
+          </div>
+
+          <!-- ── USER LOGIN / SIGNUP ── -->
+          <div id="login-user">
+
+            <!-- Sign In  -->
+            <div id="panel-signin">
+              <button class="social-btn">
+                <svg width="17" height="17" viewBox="0 0 24 24" style="flex-shrink:0"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <a href="./Error.html" style="text-decoration:none;color:inherit">Continue with Google</a>
+              </button>
+              <div class="divider">or sign in with email</div>
+              <div class="form-group" id="fg-li-email">
+                <label>Email Address</label>
+                <input class="form-control" id="li-email" type="email" placeholder="Enter your email" autocomplete="email">
+                <div class="error-msg">Please enter a valid email</div>
+              </div>
+              <div class="form-group" id="fg-li-pass">
+                <label>Password <button class="forgot" type="button"><a href="./Error.html">Forgot password?</a></button></label>
+                <input class="form-control" id="li-pass" type="password" placeholder="Enter your password" autocomplete="current-password">
+                <div class="error-msg">Password is required</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px">
+                <input type="checkbox" id="remember" style="accent-color:var(--accent);width:15px;height:15px">
+                <label for="remember" style="font-size:13px;color:var(--text2);cursor:pointer">Keep me signed in</label>
+              </div>
+              <button class="btn-primary" style="width:100%;justify-content:center" onclick="handleUserLogin(this)">Sign In →</button>
+              <div class="auth-switch">Don't have an account? <button onclick="switchAuthView('signup')">Sign Up</button></div>
+            </div>
+
+            <!-- Sign Up -->
+            <div id="panel-signup" style="display:none">
+              <div class="form-row">
+                <div class="form-group" id="fg-su-fname">
+                  <label>First Name</label>
+                  <input class="form-control" id="su-fname" type="text" placeholder="Enter your first name">
+                  <div class="error-msg">Required</div>
+                </div>
+                <div class="form-group" id="fg-su-lname">
+                  <label>Last Name</label>
+                  <input class="form-control" id="su-lname" type="text" placeholder="Enter your last name">
+                  <div class="error-msg">Required</div>
+                </div>
+              </div>
+              <div class="form-group" id="fg-su-email">
+                <label>Email Address</label>
+                <input class="form-control" id="su-email" type="email" placeholder="Enter your email">
+                <div class="error-msg">Valid email is required</div>
+              </div>
+              <div class="form-group" id="fg-su-pass">
+                <label>Password</label>
+                <input class="form-control" id="su-pass" type="password" placeholder="Enter your password">
+                <div class="error-msg">Password must be at least 8 characters</div>
+              </div>
+              <div class="form-group" id="fg-su-pass2">
+                <label>Confirm Password</label>
+                <input class="form-control" id="su-pass2" type="password" placeholder="Confirm your password">
+                <div class="error-msg">Passwords do not match</div>
+              </div>
+              <button class="btn-primary" style="width:100%;justify-content:center" onclick="handleUserSignup(this)">Create Account →</button>
+              <div class="auth-switch">Already have an account? <button onclick="switchAuthView('signin')">Sign In</button></div>
+            </div>
+          </div>
+
+          <!-- ── ADMIN LOGIN ── -->
+          <div id="login-admin" style="display:none">
+            <div class="admin-badge">🛡️ Restricted — Authorised Personnel Only</div>
+            <div class="form-group" id="fg-adm-email">
+              <label>Admin Email</label>
+              <input class="form-control" id="adm-email" type="email" placeholder="Enter admin email">
+              <div class="error-msg">Admin email is required</div>
+            </div>
+            <div class="form-group" id="fg-adm-pass">
+              <label>Admin Password <button class="forgot" type="button">Reset</button></label>
+              <input class="form-control" id="adm-pass" type="password" placeholder="Enter admin password">
+              <div class="error-msg">Password is required</div>
+            </div>
+            <div class="form-group" id="fg-adm-otp">
+              <label>2FA Code</label>
+              <input class="form-control" id="adm-otp" type="text" placeholder="6-digit code" maxlength="6"
+                style="letter-spacing:.2em;font-size:17px;font-weight:600;text-align:center" inputmode="numeric">
+              <div class="error-msg">Enter valid 6-digit code</div>
+            </div>
+            <button class="btn-primary" id="adm-submit-btn"
+              style="width:100%;justify-content:center;background:linear-gradient(135deg,var(--accent3),var(--accent2))"
+              onclick="handleAdminLogin(this)">Admin Sign In →</button>
+            <p style="text-align:center;margin-top:14px;font-size:12px;color:var(--text2)">All admin sessions are logged and monitored.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <script src="./Website.js"></script>
+
+  
+<script>
+
+  // USER SIGN IN → User-Dashboard.html
+  function handleUserLogin(btn) {
+    const emailEl = document.getElementById('li-email');
+    const passEl  = document.getElementById('li-pass');
+    const fgEmail = document.getElementById('fg-li-email');
+    const fgPass  = document.getElementById('fg-li-pass');
+
+    fgEmail.classList.remove('error');
+    fgPass.classList.remove('error');
+
+    const email = emailEl.value.trim();
+    const pass  = passEl.value.trim();
+    let valid = true;
+
+    // Validate email
+    if (!email) {
+      fgEmail.classList.add('error');
+      fgEmail.querySelector('.error-msg').textContent = 'Email is required';
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      fgEmail.classList.add('error');
+      fgEmail.querySelector('.error-msg').textContent = 'Please enter a valid email';
+      valid = false;
+    }
+
+    // Validate password
+    if (!pass) {
+      fgPass.classList.add('error');
+      fgPass.querySelector('.error-msg').textContent = 'Password is required';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Sign in…';
+
+    setTimeout(function () {
+      localStorage.setItem('stackly_user_email', email);
+      localStorage.setItem('stackly_user_name', email.split('@')[0]);
+      window.location.href = 'User-Dashboard.html';
+    }, 800);
+  }
+
+  // USER SIGN UP → User-Dashboard.html
+  function handleUserSignup(btn) {
+    const fname  = document.getElementById('su-fname').value.trim();
+    const lname  = document.getElementById('su-lname').value.trim();
+    const email  = document.getElementById('su-email').value.trim();
+    const pass   = document.getElementById('su-pass').value.trim();
+    const pass2  = document.getElementById('su-pass2').value.trim();
+
+    const fgFname = document.getElementById('fg-su-fname');
+    const fgLname = document.getElementById('fg-su-lname');
+    const fgEmail = document.getElementById('fg-su-email');
+    const fgPass  = document.getElementById('fg-su-pass');
+    const fgPass2 = document.getElementById('fg-su-pass2');
+
+    
+    [fgFname, fgLname, fgEmail, fgPass, fgPass2].forEach(el => el.classList.remove('error'));
+
+    let valid = true;
+
+    if (!fname) {
+      fgFname.classList.add('error');
+      fgFname.querySelector('.error-msg').textContent = 'First name is required';
+      valid = false;
+    }
+    if (!lname) {
+      fgLname.classList.add('error');
+      fgLname.querySelector('.error-msg').textContent = 'Last name is required';
+      valid = false;
+    }
+    if (!email) {
+      fgEmail.classList.add('error');
+      fgEmail.querySelector('.error-msg').textContent = 'Email is required';
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      fgEmail.classList.add('error');
+      fgEmail.querySelector('.error-msg').textContent = 'Please enter a valid email';
+      valid = false;
+    }
+    if (!pass) {
+      fgPass.classList.add('error');
+      fgPass.querySelector('.error-msg').textContent = 'Password is required';
+      valid = false;
+    } else if (pass.length < 8) {
+      fgPass.classList.add('error');
+      fgPass.querySelector('.error-msg').textContent = 'Password must be at least 8 characters';
+      valid = false;
+    }
+    if (!pass2) {
+      fgPass2.classList.add('error');
+      fgPass2.querySelector('.error-msg').textContent = 'Please confirm your password';
+      valid = false;
+    } else if (pass2 !== pass) {
+      fgPass2.classList.add('error');
+      fgPass2.querySelector('.error-msg').textContent = 'Passwords do not match';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Create account…';
+
+    setTimeout(function () {
+      localStorage.setItem('stackly_user_name', fname + ' ' + lname);
+      localStorage.setItem('stackly_user_email', email);
+      window.location.href = 'User-Dashboard.html';
+    }, 800);
+  }
+
+  
+  
+  function handleAdminLogin(btn) {
+    const email = document.getElementById('adm-email').value.trim();
+    const pass  = document.getElementById('adm-pass').value.trim();
+    const otp   = document.getElementById('adm-otp').value.trim();
+
+    const fgEmail = document.getElementById('fg-adm-email');
+    const fgPass  = document.getElementById('fg-adm-pass');
+    const fgOtp   = document.getElementById('fg-adm-otp');
+
+    
+    fgEmail.classList.remove('error');
+    fgPass.classList.remove('error');
+    fgOtp.classList.remove('error');
+
+    let valid = true;
+
+    if (!email) {
+      fgEmail.classList.add('error');
+      fgEmail.querySelector('.error-msg').textContent = 'Admin email is required';
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      fgEmail.classList.add('error');
+      fgEmail.querySelector('.error-msg').textContent = 'Please enter a valid email';
+      valid = false;
+    }
+
+    if (!pass) {
+      fgPass.classList.add('error');
+      fgPass.querySelector('.error-msg').textContent = 'Password is required';
+      valid = false;
+    }
+
+    if (!otp) {
+      fgOtp.classList.add('error');
+      fgOtp.querySelector('.error-msg').textContent = '2FA code is required';
+      valid = false;
+    } else if (otp.length !== 6 || isNaN(otp)) {
+      fgOtp.classList.add('error');
+      fgOtp.querySelector('.error-msg').textContent = 'Enter a valid 6-digit code';
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Admin Sign In…';
+
+    setTimeout(function () {
+      // localStorage.setItem('stackly_admin_name', fname + ' ' + lname);
+      localStorage.setItem('stackly_admin_email', email);       
+    localStorage.setItem('stackly_admin_name', email.split('@')[0]);
+    window.location.href = 'Admin-Dashboard.html';
+    }, 800);
+  }
+
+</script>
+
+</body>
+</html>

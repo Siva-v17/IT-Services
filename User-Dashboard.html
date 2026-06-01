@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stackly User Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#020817;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+.dashboard{
+  display:flex;
+  min-height:100vh;
+}
+
+.sidebar{
+  width: 295px;
+  background:#050d1f;
+  border-right:1px solid rgba(0,255,255,.08);
+  position:fixed;
+  height:100vh;
+  padding:30px 20px;
+}
+
+.logo-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  overflow:hidden;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo-icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.logo h2{
+  font-size:24px;
+  color:#49d6ff;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.menu a{
+  text-decoration:none;
+  color:#b6c2d9;
+  padding:12px 16px;
+  border-radius:14px;
+  transition:.3s;
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.menu a:hover,
+.menu a.active{
+  background:linear-gradient(90deg,rgba(0,212,255,.15),rgba(123,97,255,.15));
+  color:#fff;
+  border:1px solid rgba(0,255,255,.15);
+  transform:translateX(4px);
+}
+
+.main{
+  margin-left:280px;
+  width:calc(100% - 280px);
+  padding:30px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.topbar h1{
+  font-size:34px;
+  font-weight:700;
+}
+
+.topbar p{
+  color:#8fa2c7;
+  margin-top:6px;
+}
+
+.profile{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:#071224;
+  padding:12px 18px;
+  border-radius:16px;
+  width: 265px;
+  border:1px solid rgba(0,255,255,.1);
+}
+
+.profile img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+  margin-bottom:30px;
+}
+
+.card{
+  background:#071224;
+  padding:28px;
+  border-radius:24px;
+  border:1px solid rgba(0,255,255,.08);
+  position:relative;
+  overflow:hidden;
+  transition:.4s;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  width:160px;
+  height:160px;
+  background:radial-gradient(circle,rgba(0,212,255,.18),transparent 70%);
+  top:-80px;
+  right:-80px;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 35px rgba(0,212,255,.15);
+}
+
+.card h3{
+  color:#9bb0d3;
+  font-size:14px;
+  margin-bottom:16px;
+}
+
+.card h2{
+  font-size:34px;
+  color:#00d4ff;
+  margin-bottom:8px;
+}
+
+.card span{
+  color:#00ff99;
+  font-size:13px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:24px;
+  margin-bottom:30px;
+}
+
+.panel{
+  background:#071224;
+  border-radius:24px;
+  padding:24px;
+  border:1px solid rgba(0,255,255,.08);
+}
+
+.panel-title{
+  font-size:20px;
+  margin-bottom:24px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+table th{
+  text-align:left;
+  color:#7f93b6;
+  font-size:13px;
+  padding-bottom:18px;
+}
+
+table td{
+  padding:16px 0;
+  border-top:1px solid rgba(255,255,255,.05);
+  font-size:14px;
+}
+
+.status{
+  padding:7px 14px;
+  border-radius:40px;
+  font-size:12px;
+  display:inline-block;
+}
+
+.active{
+  background:rgba(0,255,153,.15);
+  color:#00ff99;
+}
+
+.pending{
+  background:rgba(255,196,0,.15);
+  color:#ffc400;
+}
+
+.progress-group{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.progress-item{
+  width:100%;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-size:14px;
+}
+
+.progress-bar{
+  width:100%;
+  height:10px;
+  border-radius:30px;
+  background:#09172d;
+  overflow:hidden;
+}
+
+.progress{
+  height:100%;
+  border-radius:30px;
+  background:linear-gradient(90deg,#00d4ff,#7b61ff);
+  animation:grow 2s ease;
+}
+
+.activity{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.activity-item{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+
+.dot{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  margin-top:6px;
+}
+
+.dot.green{
+  background:#00ff99;
+  box-shadow:0 0 10px #00ff99;
+}
+
+.dot.blue{
+  background:#00d4ff;
+  box-shadow:0 0 10px #00d4ff;
+}
+
+.dot.purple{
+  background:#7b61ff;
+  box-shadow:0 0 10px #7b61ff;
+}
+
+.activity-item p{
+  color:#c6d3ea;
+  font-size:14px;
+}
+
+.activity-item span{
+  color:#7c91b3;
+  font-size:12px;
+}
+
+@keyframes grow{
+  from{ width:0; }
+}
+
+@media(max-width:1100px){
+  .grid{ grid-template-columns:1fr; }
+}
+
+@media(max-width:850px){
+  .sidebar{ width:100%; height:auto; position:relative; }
+  .main{ margin-left:0; width:100%; }
+  .dashboard{ flex-direction:column; }
+}
+
+@media(max-width:600px){
+  .topbar{ flex-direction:column; align-items:flex-start; gap:20px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="dashboard">
+
+  <div class="sidebar">
+
+    <!-- Logo -->
+    <div class="logo" style="display:flex;align-items:center;gap:12px;margin-bottom:30px;">
+      <div class="logo-icon">
+        <a href="./index.html"><img src="./Screenshot_2026-05-27_120008-removebg-preview.png" alt="Stackly"></a>
+      </div>
+      <a href="./index.html" style="text-decoration:none;">
+        <h2 style="font-size:22px;background:linear-gradient(90deg,#00d4ff,#7b61ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Stackly</h2>
+      </a>
+    </div>
+
+    <!-- Sidebar profile card -->
+    <div class="profile" style="margin-bottom:24px;">
+      <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#00d4ff,#7b61ff);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;flex-shrink:0;" id="user-avatar">?</div>
+      <div>
+        <h4 id="user-name" style="font-size:15px;font-weight:600;">Loading...</h4>
+        <small id="user-email" style="color:#8ea2c7;font-size:12px;">—</small>
+      </div>
+    </div>
+
+    <div class="menu">
+      <a href="./User-Dashboard.html" class="active">🏠 Dashboard</a>
+      <a href="./Error.html">👤 Profile</a>
+      <a href="./Error.html">📁 Projects</a>
+      <a href="./Error.html">📊 Analytics</a>
+      <a href="./Error.html">💬 Messages</a>
+      <a href="./Error.html">⚙ Settings</a>
+      <a href="./login.html">🚪 Logout</a>
+    </div>
+
+  </div>
+
+  <div class="main">
+
+    <div class="topbar">
+      <div>
+        <h1>User Dashboard</h1>
+        <!-- ↓ name is injected here by JS -->
+        <p id="welcome-text">Welcome back 👋</p>
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Total Projects</h3>
+        <h2 id="projectCount">0</h2>
+        <span>+12% this month</span>
+      </div>
+
+      <div class="card">
+        <h3>Tasks Completed</h3>
+        <h2 id="taskCount">0</h2>
+        <span>+8 new today</span>
+      </div>
+
+      <div class="card">
+        <h3>Messages</h3>
+        <h2 id="messageCount">0</h2>
+        <span>24 unread</span>
+      </div>
+
+      <div class="card">
+        <h3>Total Revenue</h3>
+        <h2>₹2.8M</h2>
+        <span>+18% growth</span>
+      </div>
+
+    </div>
+
+    <div class="grid">
+
+      <div class="panel">
+
+        <h3 class="panel-title">Recent Projects</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Client</th>
+              <th>Status</th>
+              <th>Deadline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Stackly CRM</td>
+              <td>FinVertex</td>
+              <td><span class="status active">Active</span></td>
+              <td>28 May</td>
+            </tr>
+            <tr>
+              <td>AI Dashboard</td>
+              <td>RetailMax</td>
+              <td><span class="status pending">Pending</span></td>
+              <td>3 Jun</td>
+            </tr>
+            <tr>
+              <td>Cloud Sync</td>
+              <td>LogiFlow</td>
+              <td><span class="status active">Completed</span></td>
+              <td>12 Jun</td>
+            </tr>
+            <tr>
+              <td>Security Panel</td>
+              <td>MedCore</td>
+              <td><span class="status active">Active</span></td>
+              <td>18 Jun</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="panel">
+
+        <h3 class="panel-title">Live Activity</h3>
+
+        <div class="activity">
+          <div class="activity-item">
+            <div class="dot green"></div>
+            <div>
+              <p>New user registered</p>
+              <span>2 min ago</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="dot blue"></div>
+            <div>
+              <p>Project updated successfully</p>
+              <span>10 min ago</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="dot purple"></div>
+            <div>
+              <p>Payment received</p>
+              <span>1 hour ago</span>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="dot green"></div>
+            <div>
+              <p>Server backup completed</p>
+              <span>3 hours ago</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <h3 class="panel-title">Performance Overview</h3>
+
+      <div class="progress-group">
+
+        <div class="progress-item">
+          <div class="progress-top">
+            <span>UI Design</span><span>92%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width:92%"></div>
+          </div>
+        </div>
+
+        <div class="progress-item">
+          <div class="progress-top">
+            <span>Development</span><span>85%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width:85%"></div>
+          </div>
+        </div>
+
+        <div class="progress-item">
+          <div class="progress-top">
+            <span>Marketing</span><span>72%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width:72%"></div>
+          </div>
+        </div>
+
+        <div class="progress-item">
+          <div class="progress-top">
+            <span>Client Satisfaction</span><span>98%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress" style="width:98%"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  /* ── Load user info from localStorage ── */
+  var storedName  = localStorage.getItem('stackly_user_name')  || 'User';
+  var storedEmail = localStorage.getItem('stackly_user_email') || '';
+
+  /* Capitalise first letter */
+  var displayName = storedName.charAt(0).toUpperCase() + storedName.slice(1);
+
+  /* Sidebar: name + email */
+  document.getElementById('user-name').textContent  = displayName;
+  document.getElementById('user-email').textContent = storedEmail;
+
+  /* Sidebar avatar: first letter */
+  document.getElementById('user-avatar').textContent = displayName.charAt(0).toUpperCase();
+
+  /* ── Topbar welcome line with name ── */
+  document.getElementById('welcome-text').textContent = 'Welcome back, ' + displayName + ' 👋';
+
+  /* ── Animated counters ── */
+  function counter(id, start, end, speed) {
+    var obj     = document.getElementById(id);
+    var current = start;
+    var timer   = setInterval(function () {
+      current++;
+      obj.innerText = current;
+      if (current >= end) clearInterval(timer);
+    }, speed);
+  }
+
+  counter('projectCount',  0, 128, 20);
+  counter('taskCount',     0, 342, 10);
+  counter('messageCount',  0,  89, 25);
+
+</script>
+
+</body>
+</html>

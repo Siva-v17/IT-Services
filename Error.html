@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>IT Compass | 404 - Route Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(145deg, #0b0c1a 0%, #0a0a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated tech-grid background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(110, 87, 224, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(110, 87, 224, 0.08) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* glowing orb effect */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 30%;
+            left: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(100, 70, 230, 0.2) 0%, rgba(30, 20, 80, 0) 70%);
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(12, 14, 30, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 3rem;
+            padding: 2rem 2rem 3rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(140, 110, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        /* main card inner */
+        .error-card {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        /* Tech accent lines */
+        .glitch-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(85, 60, 210, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.45rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(130, 100, 255, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .glitch-badge span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #b7acff;
+            text-transform: uppercase;
+        }
+
+        .status-icon {
+            font-size: 1.4rem;
+        }
+
+        /* 404 main display */
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, #B39DDB 0%, #7C4DFF 40%, #3F2E9E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 18px rgba(110, 70, 250, 0.4);
+            letter-spacing: -4px;
+            margin-bottom: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .error-code {
+                font-size: 11rem;
+                letter-spacing: -6px;
+            }
+        }
+
+        .headline {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            background: linear-gradient(120deg, #ffffff, #cdc3ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #bfc6e6;
+            max-width: 520px;
+            margin: 0 auto 1.8rem;
+            font-weight: 400;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #9aa2cf;
+            background: rgba(45, 35, 110, 0.4);
+            padding: 0.9rem 1.5rem;
+            border-radius: 2rem;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(110, 80, 240, 0.4);
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(105deg, #6246e5, #3a29b3);
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 2.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 18px -6px rgba(60, 40, 180, 0.5);
+            border: 1px solid rgba(200, 180, 255, 0.3);
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(105deg, #755cee, #4f37cc);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px -10px rgba(80, 50, 220, 0.6);
+            border-color: rgba(190, 160, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(20, 18, 45, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #6c51e0;
+            padding: 0.9rem 1.9rem;
+            border-radius: 2.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #e0d6ff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(65, 48, 155, 0.7);
+            color: white;
+            border-color: #a185ff;
+            transform: translateY(-2px);
+        }
+
+        /* service grid / hints - IT specific */
+        .service-options {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed rgba(110, 80, 240, 0.4);
+        }
+
+        .help-text {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: #8f86c2;
+            margin-bottom: 1.2rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            background: rgba(55, 45, 125, 0.5);
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #cfc6ff;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(135, 100, 255, 0.4);
+            transition: 0.2s;
+        }
+
+        .tag i {
+            margin-right: 6px;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .tag:hover {
+            background: #4b3bcd60;
+            border-color: #a07eff;
+            transform: translateY(-2px);
+        }
+
+        /* animated network pulse */
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.95);}
+            100% { opacity: 0; transform: scale(1.5);}
+        }
+
+        .pulse-dot {
+            position: relative;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #8f6eff;
+            border-radius: 50%;
+            margin-right: 6px;
+            box-shadow: 0 0 6px #b794ff;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            color: #6b6390;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        /* interactive micro-animation */
+        .btn-primary:active, .btn-secondary:active {
+            transform: translateY(1px);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                padding: 1.5rem;
+            }
+            .btn-group {
+                gap: 0.9rem;
+            }
+            .error-code {
+                font-size: 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="error-card">
+        <!-- small tech badge -->
+        <div class="glitch-badge">
+            <span class="status-icon">⚡</span>
+            <span>STACKLY • ROUTE ERROR</span>
+            <span class="status-icon">🖧</span>
+        </div>
+
+        <!-- dynamic 404 code with purple-blue vibe -->
+        <div class="error-code">404</div>
+
+        <h1 class="headline">ROUTE NOT RESOLVED</h1>
+        
+        <div class="message">
+            It looks like our secure tunnel couldn't locate this endpoint.  
+            Even enterprise-grade architectures drift off-path sometimes.
+        </div>
+
+        <div class="description">
+            <span class="pulse-dot"></span> No data packets lost — just a missing route. Let's navigate you back to active infrastructure.
+        </div>
+
+        <!-- action buttons -->
+        <div class="btn-group">
+            <a href="./Index.html" class="btn-primary" id="backHomeBtn">
+                BACK TO HOME
+            </a>
+        </div>
+        <div class="service-options">
+            <div class="help-text">
+                <span>✦ OUR SOLUTIONS — STILL REACHABLE ✦</span>
+            </div>
+            <div class="tech-tags">
+                <div class="tag"><i>☁️</i> Cloud Infrastructure</div>
+                <div class="tag"><i>🔒</i> Cybersecurity Mesh</div>
+                <div class="tag"><i>🤖</i> AIOps Monitoring</div>
+                <div class="tag"><i>🖥️</i> DevOps Pipelines</div>
+                <div class="tag"><i>🌐</i> 5G Edge Computing</div>
+            </div>
+            <div class="footer-note">
+                STACKLY • Zero Downtime Architecture • <span id="year"></span> — All routes secured with 256-bit encryption
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    // smooth simulation for back/home actions with slight playful toast for "IT service" context
+    (function() {
+        const homeBtn = document.getElementById('backHomeBtn');
+        const backBtn = document.getElementById('goBackBtn');
+        
+        // Helper: simulate navigation with a subtle console + alert replacement? Actually elegant feedback
+        // but prevent actual page reload for demo (since we want to mimic internal routing)
+        // For real deployment, replace href="#" with actual URL.
+        // We add a modern toast-style notification for demo environment.
+        
+        function createToastMessage(message, type = 'info') {
+            // remove existing toasts if any to keep clean
+            const existingToast = document.querySelector('.it-toast-notify');
+            if(existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'it-toast-notify';
+            toast.style.position = 'fixed';
+            toast.style.bottom = '24px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = '#1b173c';
+            toast.style.backdropFilter = 'blur(12px)';
+            toast.style.border = '1px solid #7b5df0';
+            toast.style.borderRadius = '2rem';
+            toast.style.padding = '0.75rem 1.8rem';
+            toast.style.color = '#e2dbff';
+            toast.style.fontFamily = "'Inter', system-ui";
+            toast.style.fontWeight = '500';
+            toast.style.fontSize = '0.9rem';
+            toast.style.zIndex = '9999';
+            toast.style.boxShadow = '0 10px 20px -5px rgba(0,0,0,0.5)';
+            toast.style.letterSpacing = '0.2px';
+            toast.style.pointerEvents = 'none';
+            toast.style.whiteSpace = 'nowrap';
+            if(type === 'home') {
+                toast.innerHTML = '🏠 Returning to main IT Compass · Redirecting to secure homepage';
+            } else if(type === 'back') {
+                toast.innerHTML = '↺ Navigating back · restoring previous session route';
+            } else {
+                toast.innerHTML = message;
+            }
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => {
+                    if(toast && toast.remove) toast.remove();
+                }, 400);
+            }, 2200);
+        }
+        
+        // handle Home button - redirect simulation (you can change window.location)
+        homeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            createToastMessage('', 'home');
+            // Simulate actual redirect after short feedback (for demonstration to /)
+            // In real project set: window.location.href = "/";
+            setTimeout(() => {
+                // Show final info, but since it's a demo we simply update a hint but not actual full redirect
+                // to not break the demo experience, we just display status, but we also update the headline briefly?
+                // Alternatively provide a small blink effect: but better to respect no full reload for showcase.
+                if(window.location.pathname !== '/') {
+                    // For demonstration - but we don't force redirect.
+                    // show extra message: Demo Environment: Home redirection simulated.
+                    const fakeNotice = document.createElement('div');
+                    fakeNotice.className = 'sim-redirect-notice';
+                    fakeNotice.style.position = 'fixed';
+                    fakeNotice.style.top = '20px';
+                    fakeNotice.style.right = '20px';
+                    fakeNotice.style.backgroundColor = '#2c2580';
+                    fakeNotice.style.padding = '8px 16px';
+                    fakeNotice.style.borderRadius = '40px';
+                    fakeNotice.style.fontSize = '0.75rem';
+                    fakeNotice.style.border = '1px solid #a182ff';
+                    fakeNotice.style.color = '#cdc2ff';
+                    fakeNotice.innerText = '✨ IT Hub: Redirect to home (demo) · update URL as needed';
+                    document.body.appendChild(fakeNotice);
+                    setTimeout(() => fakeNotice.remove(), 2800);
+                }
+                // optionally if you want real mock: location.href = '/';
+                // but we keep as demo since we're in iframe-style but it's ok.
+            }, 350);
+        });
+        
+        // handle Go Back button (simulate browser back)
+        backBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            createToastMessage('', 'back');
+            // window.history.back() will work if there's history, but if not we display message:
+            setTimeout(() => {
+                if(window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    const backMsg = document.createElement('div');
+                    backMsg.style.position = 'fixed';
+                    backMsg.style.bottom = '80px';
+                    backMsg.style.left = '50%';
+                    backMsg.style.transform = 'translateX(-50%)';
+                    backMsg.style.backgroundColor = '#322e66cc';
+                    backMsg.style.backdropFilter = 'blur(8px)';
+                    backMsg.style.padding = '0.6rem 1.5rem';
+                    backMsg.style.borderRadius = '3rem';
+                    backMsg.style.fontSize = '0.8rem';
+                    backMsg.style.border = '1px solid #8a6eff';
+                    backMsg.style.color = '#dad1ff';
+                    backMsg.innerText = '⚠️ No previous history · use navigation menu or home';
+                    document.body.appendChild(backMsg);
+                    setTimeout(() => backMsg.remove(), 2000);
+                }
+            }, 100);
+        });
+        
+        // set dynamic year
+        const yearSpan = document.getElementById('year');
+        if(yearSpan) yearSpan.innerText = new Date().getFullYear();
+
+        // Optional: add small style for interactive IT feel
+        const tags = document.querySelectorAll('.tag');
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // subtle playful feedback (for service demo)
+                const serviceName = tag.innerText.trim();
+                const tempDiv = document.createElement('div');
+                tempDiv.innerText = `🔧 Service catalog: ${serviceName} — reachable via main portal`;
+                tempDiv.style.position = 'fixed';
+                tempDiv.style.bottom = '60px';
+                tempDiv.style.left = '50%';
+                tempDiv.style.transform = 'translateX(-50%)';
+                tempDiv.style.backgroundColor = '#1d1a41f0';
+                tempDiv.style.padding = '0.5rem 1rem';
+                tempDiv.style.borderRadius = '2rem';
+                tempDiv.style.fontSize = '0.8rem';
+                tempDiv.style.backdropFilter = 'blur(8px)';
+                tempDiv.style.border = '1px solid #ab91ff';
+                tempDiv.style.color = '#ede5ff';
+                tempDiv.style.zIndex = '9999';
+                tempDiv.style.whiteSpace = 'nowrap';
+                document.body.appendChild(tempDiv);
+                setTimeout(() => tempDiv.remove(), 1500);
+            });
+        });
+    })();
+</script> -->
+</body>
+</html>
